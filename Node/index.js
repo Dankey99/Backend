@@ -1,43 +1,38 @@
-const colors = require("colors");
-const { count } = require("console");
-console.log("Hello".yellow);
-console.log("Hello".bgMagenta);
-console.log("Hello".green.bgWhite);
 
-let i=0;
-while(i<=100){
-    console.log(colors.random (i.toString()))
-    i++
-}
+const mongoose = require("mongoose")
+//mongoose.connect("mongodb://127.0.0.1:27017").then(() => {
+  //  console.log("connected!")
+    //mongoose.disconnect().then(() =>
+    //console.log("disconnect"))})
 
+    //console.log("end of file")
+    const input = require("prompt-sync")()
+    const {productModel, setupTestData} = require("/Users/Admin/Backend/Node/new")
+    mongoose.connect("mongodb://127.0.0.1:27017/").then(async() => {
+ 
+    console.log("Connected!");
+    
+    await productModel.deleteMany().then(() => {
+    const name = input("what is the name?")
+    const size = input("what is the size?")
+    productModel.create({
+        name:"Samsung",
+        size:"small"})
 
-for (let c=0;c<101;c++) {
-    if (c % 3 == 0) console.log(colors.red("fizz"));
-    if (c % 5 == 0) console.log(colors.green("buzz"));
-    if (c % 7 == 0) console.log(colors.blue("zing"));
-else console.log(colors.yellow(c));
+    productModel.create({
+        name:"Iphone",
+        size:"Large"
+   }).then(()=> {
 
-}
-let rps=["rock","paper","scissors"]
-let rps2=["Rock","Paper","Scissors"]
-console.log(rps)
-
-if (rps[0]=rps2[0]){
-    return "draw";}
-if (rps[0]=rps2[1]){
-    return "loss";}
-if (rps[0]=rps2[2]){
-    return "win";}
-if (rps[1]=rps2[0]){
-    return "win";}
-if (rps[1]=rps2[1]){
-    return "draw";}
-if (rps[1]=rps2[2]){
-    return "loss";}
-if (rps[2]=rps2[0]){
-    return "loss";}
-if (rps[2]=rps2[1]){
-    return "win";}
-if (rps[2]=rps2[2]){
-    return "draw";}
-    console.log(math.random()*3);
+       productModel.find({}).then(res => {
+           for (let product of res){
+               console.log(product)
+           }
+ 
+    
+ 
+            mongoose.disconnect()
+        })
+            })
+                })  
+                    }) 
