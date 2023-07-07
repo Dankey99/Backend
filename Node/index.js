@@ -7,19 +7,19 @@ const mongoose = require("mongoose")
 
     //console.log("end of file")
     const input = require("prompt-sync")()
-    const {productModel, setupTestData} = require("/Users/Admin/Backend/Node/new")
+    const productModel = require("/Users/Admin/Backend/Node/new")
     mongoose.connect("mongodb://127.0.0.1:27017/").then(async() => {
  
     console.log("Connected!");
     
-    await productModel.deleteMany().then(() => {
+    await productModel.deleteMany().then(async() => {
     const name = input("what is the name?")
     const size = input("what is the size?")
-    productModel.create({
+    await productModel.create({
         name:"Samsung",
         size:"small"})
 
-    productModel.create({
+    await productModel.create({
         name:"Iphone",
         size:"Large"
    }).then(()=> {
@@ -30,7 +30,7 @@ const mongoose = require("mongoose")
            }
  
     
- 
+           
             mongoose.disconnect()
         })
             })
